@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WADDLE | E-Learning</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="planner.css">
+  <link rel="icon" href="images/logo-duck.png">
+
+  <style>
+    /* ===== ANIMATED BANNER ===== */
+    .banner-svg {
+      height: 85%;
+      width: auto;
+      max-width: 45%;
+      flex-shrink: 0;
+    }
+
+    .banner-art { animation: waddleFloat 3s ease-in-out infinite; }
+    .bob { animation: waddleFloat 2.6s ease-in-out infinite; }
+    .float2 { animation: waddleFloat 3.4s ease-in-out infinite reverse; }
+
+    @keyframes waddleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .twinkle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: waddleTwinkle 1.8s ease-in-out infinite;
+    }
+
+    @keyframes waddleTwinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.6); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .clock-hand {
+      transform-origin: 335px 70px;
+      animation: waddleSpin 5s linear infinite;
+    }
+
+    @keyframes waddleSpin { to { transform: rotate(360deg); } }
+
+    .type {
+      transform-box: fill-box;
+      transform-origin: left center;
+      animation: waddleType 3s ease-in-out infinite;
+    }
+
+    @keyframes waddleType {
+      0% { transform: scaleX(0); }
+      60%, 100% { transform: scaleX(1); }
+    }
+
+    .grow {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: waddleGrow 3.5s ease-in-out infinite;
+    }
+
+    @keyframes waddleGrow {
+      0% { transform: scaleY(0); }
+      40%, 100% { transform: scaleY(1); }
+    }
+
+    @media (max-width: 760px) {
+      .banner-svg { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#" onclick="showHome()">
+      <img src="./images/image/logo.full.png" alt="WADDLE Duck Logo" class="logo">
+      <span>WADDLE<small>Learn at your own pace</small></span>
+    </a>
+  <nav>
+  <button class="nav-link" onclick="showHome()">Home</button>
+  <button class="nav-link" onclick="showAbout()">About Us</button>
+  <button id="logoutBtn" class="hidden" onclick="logout()">Log Out</button>
+</nav>
+  </header>
+
+  <main>
+    <section id="authSection" class="auth-layout">
+      <div class="welcome">
+        <span class="eyebrow">WELCOME TO WADDLE</span>
+        <h1>Small steps.<br><span>Big progress.</span></h1>
+        <p>Your friendly online learning space for developing office,
+           communication, and digital workplace skills.</p>
+        <div class="duck-art"></div>
+      </div>
+
+      <div class="panel">
+        <div class="tabs">
+          <button id="loginTab" class="active" onclick="setAuthMode('login')">Log In</button>
+          <button id="signupTab" onclick="setAuthMode('signup')">Sign Up</button>
+        </div>
+
+        <form id="authForm">
+          <h2 id="authTitle">Welcome back!</h2>
+<p id="authSubtitle" class="subtitle">Log in to continue learning.</p>
+         
+
+          <label for="fullName" id="nameLabel" class="hidden">Full Name</label>
+          <input id="fullName" class="hidden" type="text" placeholder="Enter your full name">
+
+          <label for="email">Email Address</label>
+          <input id="email" type="email" placeholder="you@example.com" required>
+
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter password" required minlength="6">
+
+          <button type="submit" id="authSubmit" class="primary full">Log In</button>
+          <p id="authMessage" class="message" role="status"></p>
+          <p class="demo-note">Demo project: use your own test account.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">YOUR LEARNING SPACE</span>
+          <h1>Hello, <span id="userName">Learner</span>!</h1>
+          <p>Ready to learn something new today?</p>
+        </div>
+        <div class="hero-duck"></div>
+      </div>
+
+      <section id="homeArea">
+        <div class="banner">
+
+          <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+            <symbol id="duck" viewBox="0 0 200 200">
+              <ellipse cx="100" cy="138" rx="56" ry="46" fill="#fff" stroke="#14473a" stroke-width="5"/>
+              <path d="M52 140 Q40 165 62 172" fill="none" stroke="#14473a" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="100" cy="82" r="42" fill="#fff" stroke="#14473a" stroke-width="5"/>
+              <circle cx="72" cy="94" r="8" fill="#f8c9c0"/>
+              <circle cx="114" cy="78" r="5" fill="#14473a"/>
+              <ellipse cx="130" cy="94" rx="17" ry="9" fill="#f5b041" stroke="#14473a" stroke-width="3"/>
+              <path d="M54 56 L100 36 L146 56 L100 74 Z" fill="#2f7d5b" stroke="#14473a" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M78 66 v14 q22 10 44 0 v-14" fill="#1b5e46" stroke="#14473a" stroke-width="4"/>
+              <path d="M146 56 V84" stroke="#f5b041" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="146" cy="88" r="5" fill="#f5b041"/>
+            </symbol>
+          </svg>
+
+          <div class="banner-track" id="bannerTrack">
+
+            <div class="banner-slide slide-green">
+              <div class="banner-text">
+                <h2>Your journey,<br><span>your pace.</span></h2>
+                <p>Learn anytime. Make every lesson count.</p>
+              </div>
+              <img src="images/images/mascot.png", alt="WADDLE mascot" class="banner-art"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <svg class="banner-svg" viewBox="0 0 400 300" aria-hidden="true" style="display:none">
+                <circle cx="200" cy="150" r="125" fill="#cfe8d4"/>
+                <g class="bob"><use href="#duck" x="100" y="40" width="200" height="200"/></g>
+                <text class="twinkle" x="60" y="95" font-size="30" fill="#f5b041">✦</text>
+                <text class="twinkle" x="335" y="215" font-size="26" fill="#f5b041" style="animation-delay:1s">✦</text>
+              </svg>
+            </div>
+
+            <div class="banner-slide" style="background: linear-gradient(120deg, #fff6dc, #e3f1e6);">
+              <div class="banner-text">
+                <h2>Test what<br><span>you learned.</span></h2>
+              </div>
+              <svg class="banner-svg" viewBox="0 0 400 300" aria-hidden="true">
+                <circle cx="200" cy="150" r="125" fill="#cfe8d4"/>
+
+                <rect x="115" y="70" width="170" height="205" rx="14" fill="#fff" stroke="#14473a" stroke-width="5"/>
+                <rect x="165" y="58" width="70" height="26" rx="8" fill="#2f9a6a" stroke="#14473a" stroke-width="4"/>
+
+                <rect x="135" y="110" width="26" height="26" rx="6" fill="#fff" stroke="#14473a" stroke-width="4"/>
+                <path class="grow" d="M141 123 l8 9 l14 -17" fill="none" stroke="#2f9a6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect class="type" x="175" y="115" width="95" height="9" rx="4" fill="#2f9a6a"/>
+                <rect class="type" x="175" y="130" width="60" height="9" rx="4" fill="#8fbd91" style="animation-delay:.3s"/>
+
+                <rect x="135" y="160" width="26" height="26" rx="6" fill="#fff" stroke="#14473a" stroke-width="4"/>
+                <path class="grow" d="M141 173 l8 9 l14 -17" fill="none" stroke="#2f9a6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:.8s"/>
+                <rect class="type" x="175" y="165" width="95" height="9" rx="4" fill="#2f9a6a" style="animation-delay:.8s"/>
+                <rect class="type" x="175" y="180" width="60" height="9" rx="4" fill="#8fbd91" style="animation-delay:1.1s"/>
+
+                <rect x="135" y="210" width="26" height="26" rx="6" fill="#fff" stroke="#14473a" stroke-width="4"/>
+                <path class="grow" d="M141 223 l8 9 l14 -17" fill="none" stroke="#2f9a6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:1.6s"/>
+                <rect class="type" x="175" y="215" width="95" height="9" rx="4" fill="#2f9a6a" style="animation-delay:1.6s"/>
+                <rect class="type" x="175" y="230" width="60" height="9" rx="4" fill="#8fbd91" style="animation-delay:1.9s"/>
+
+                <g class="bob"><use href="#duck" x="262" y="20" width="110" height="110"/></g>
+
+                <text class="twinkle" x="60" y="95" font-size="30" fill="#f5b041">✦</text>
+                <text class="twinkle" x="75" y="225" font-size="22" fill="#f5b041" style="animation-delay:.9s">✦</text>
+                <text class="twinkle" x="345" y="200" font-size="26" fill="#f5b041" style="animation-delay:1.5s">✦</text>
+              </svg>
+            </div>
+
+            <div class="banner-slide slide-mint">
+              <div class="banner-text">
+                <h2>Learn at your<br><span>own pace.</span></h2>
+              </div>
+              <svg class="banner-svg" viewBox="0 0 400 300" aria-hidden="true">
+                <circle cx="200" cy="150" r="125" fill="#cfe8d4"/>
+                <g class="bob"><use href="#duck" x="110" y="25" width="180" height="180"/></g>
+                <path d="M200 226 Q155 209 105 222 L105 266 Q155 254 200 272 Z" fill="#fff" stroke="#14473a" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M200 226 Q245 209 295 222 L295 266 Q245 254 200 272 Z" fill="#fff" stroke="#14473a" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M122 238 Q155 232 185 240 M122 250 Q155 244 185 252 M215 240 Q245 232 278 238 M215 252 Q245 244 278 250" stroke="#8fbd91" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <circle cx="335" cy="70" r="32" fill="#fff" stroke="#14473a" stroke-width="5"/>
+                <line class="clock-hand" x1="335" y1="70" x2="335" y2="48" stroke="#14473a" stroke-width="4" stroke-linecap="round"/>
+                <line x1="335" y1="70" x2="348" y2="70" stroke="#2f9a6a" stroke-width="4" stroke-linecap="round"/>
+                <text class="twinkle" x="55" y="80" font-size="30" fill="#f5b041">✦</text>
+                <text class="twinkle" x="70" y="210" font-size="22" fill="#f5b041" style="animation-delay:.7s">✦</text>
+                <text class="twinkle" x="330" y="200" font-size="26" fill="#f5b041" style="animation-delay:1.3s">✦</text>
+              </svg>
+            </div>
+
+            <div class="banner-slide slide-green">
+              <div class="banner-text">
+                <h2>Build skills for<br><span>the workplace.</span></h2>
+              </div>
+              <svg class="banner-svg" viewBox="0 0 400 300" aria-hidden="true">
+                <circle cx="200" cy="160" r="125" fill="#e3f1e6"/>
+                <g class="bob"><use href="#duck" x="140" y="-10" width="120" height="120"/></g>
+                <rect x="105" y="105" width="190" height="130" rx="12" fill="#14473a"/>
+                <rect x="115" y="115" width="170" height="110" rx="6" fill="#e3f1e6"/>
+                <rect class="type" x="128" y="130" width="120" height="9" rx="4" fill="#2f9a6a"/>
+                <rect class="type" x="128" y="150" width="90" height="9" rx="4" fill="#8fbd91" style="animation-delay:.5s"/>
+                <rect class="type" x="128" y="170" width="140" height="9" rx="4" fill="#2f9a6a" style="animation-delay:1s"/>
+                <rect class="type" x="128" y="190" width="70" height="9" rx="4" fill="#8fbd91" style="animation-delay:1.5s"/>
+                <path d="M85 238 H315 L300 256 H100 Z" fill="#9bb8a8" stroke="#14473a" stroke-width="3" stroke-linejoin="round"/>
+                <g class="float2">
+                  <rect x="38" y="70" width="58" height="40" rx="5" fill="#fff" stroke="#14473a" stroke-width="4"/>
+                  <path d="M38 74 L67 96 L96 74" fill="none" stroke="#14473a" stroke-width="4"/>
+                </g>
+                <g class="bob">
+                  <rect x="316" y="110" width="46" height="58" rx="5" fill="#fff" stroke="#14473a" stroke-width="4"/>
+                  <path d="M326 128 H352 M326 140 H352 M326 152 H342" stroke="#2f9a6a" stroke-width="4" stroke-linecap="round"/>
+                </g>
+                <text class="twinkle" x="320" y="60" font-size="26" fill="#f5b041">✦</text>
+              </svg>
+            </div>
+
+            <div class="banner-slide slide-mint">
+              <div class="banner-text">
+                <h2>Small steps.<br><span>Big progress.</span></h2>
+              </div>
+              <svg class="banner-svg" viewBox="0 0 400 300" aria-hidden="true">
+                <circle cx="200" cy="150" r="125" fill="#cfe8d4"/>
+                <rect class="grow" x="70" y="210" width="62" height="50" rx="6" fill="#8fbd91" stroke="#14473a" stroke-width="4"/>
+                <rect class="grow" x="132" y="170" width="62" height="90" rx="6" fill="#6ca578" stroke="#14473a" stroke-width="4" style="animation-delay:.3s"/>
+                <rect class="grow" x="194" y="130" width="62" height="130" rx="6" fill="#2f9a6a" stroke="#14473a" stroke-width="4" style="animation-delay:.6s"/>
+                <rect class="grow" x="256" y="90" width="62" height="170" rx="6" fill="#1b5e46" stroke="#14473a" stroke-width="4" style="animation-delay:.9s"/>
+                <g class="bob"><use href="#duck" x="236" y="-20" width="100" height="100"/></g>
+                <text class="twinkle" x="60" y="100" font-size="30" fill="#f5b041">✦</text>
+                <text class="twinkle" x="340" y="60" font-size="24" fill="#f5b041" style="animation-delay:.8s">✦</text>
+                <text class="twinkle" x="95" y="170" font-size="20" fill="#f5b041" style="animation-delay:1.4s">✦</text>
+              </svg>
+            </div>
+
+          </div>
+
+          <button class="banner-arrow prev" onclick="moveBanner(-1)" aria-label="Previous slide">‹</button>
+          <button class="banner-arrow next" onclick="moveBanner(1)" aria-label="Next slide">›</button>
+        </div>
+
+        <div class="banner-dots" id="bannerDots"></div>
+        
+      </section>
+
+      <section id="coursesArea" class="hidden">
+        <div id="courseGrid" class="course-grid"></div>
+      </section>
+
+      <section id="lessonPanel" class="lesson-panel hidden">
+        <button class="back-button" onclick="showCourses()">← Back to courses</button>
+        <span class="eyebrow">YOUR LESSON</span>
+        <h2 id="lessonTitle"></h2>
+        <p id="lessonDescription"></p>
+        <div id="lessonContent" class="lesson-content"></div>
+
+        <!-- Dito lalabas ang naka-embed na Google Docs -->
+        <div id="modulePdf"></div>
+
+        <button id="completeBtn" class="primary" onclick="completeLesson()">Mark Lesson as Completed ✓</button>
+        <p id="lessonMessage" class="message"></p>
+
+        <!-- DITO ILALAGAY ANG QUIZ NINYO (Quick Knowledge Check) -->
+      </section>
+    </section>
+
+    <section id="aboutSection" class="about-section hidden">
+      <div class="about-layout">
+        <div class="about-copy">
+          <span class="eyebrow">GET TO KNOW US</span>
+          <h1>About WADDLE</h1>
+          <p class="about-intro">A student-developed e-learning platform of Pateros Technological College.</p>
+          <h2 class="started-title">How WADDLE Started</h2>
+          <p>WADDLE, which stands for Workplace Administration &amp; Digital Development Learning Environment, was developed by five fourth-year Bachelor of Science in Office Administration students of Pateros Technological College as part of their COMP 4 project.</p>
+          <p>The group created WADDLE to provide Office Administration students with an accessible learning platform where they can develop essential digital skills, gain practical knowledge, and prepare for real workplace responsibilities.</p>
+          <p class="about-description">WADDLE helps learners build practical digital skills and prepare for future administrative roles.</p>
+        </div>
+
+        <div class="about-info-grid">
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Purpose</h3>
+            <p>To help Office Administration students develop essential digital skills and practical knowledge for common administrative tasks.</p>
+          </article>
+
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Mission</h3>
+            <p>To provide accessible, learner-centered, and practical digital learning experiences that strengthen students' office administration skills and workplace readiness.</p>
+          </article>
+
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Vision</h3>
+            <p>To become a helpful e-learning platform that empowers future Office Administration professionals to become competent, confident, and digitally skilled individuals.</p>
+          </article>
+
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Goals</h3>
+            <ul>
+              <li>Develop digital and administrative skills.</li>
+              <li>Provide organized and self-paced modules.</li>
+              <li>Strengthen practical knowledge through activities and assessments.</li>
+              <li>Build confidence in using digital tools.</li>
+              <li>Prepare learners for administrative careers.</li>
+            </ul>
+          </article>
+
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Value Proposition</h3>
+            <p>WADDLE offers organized e-learning modules, practical activities, and assessments that help learners apply digital tools effectively and prepare for future administrative roles.</p>
+          </article>
+
+          <article class="about-info-card">
+            <div class="info-icon"></div>
+            <h3>Learning Philosophy</h3>
+            <p>WADDLE promotes learner-centered, competency-based, and self-paced learning through activities, tests, and work-play scenarios.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="team-section">
+        <h2>Meet Our Team</h2>
+        <p class="team-intro">The five students behind WADDLE.</p>
+
+        <div class="team-container">
+          <article class="team-card">
+              <img src="m1.png" alt="Jhanam Jamie Kaye Amman">
+             <h3>Jhanam Jamie Kaye Amman</h3>
+              <p>Learning Materials</p>
+          </article>
+
+          <article class="team-card">
+            <img src="m2.jpg" alt="Ruth Naomi Baguilolay">
+            <h3>Ruth Naomi Baguilolay</h3>
+            <p>Design &amp; Layout</p>
+          </article>
+
+          <article class="team-card">
+          <img src="m4.jpg" alt="Marielle Ebrada">
+               <h3>Marielle Stephanie Ebrada</h3>
+           <p>Content Researcher</p>
+          </article>
+
+          <article class="team-card">
+            <img src="m5.png" alt="Maria Angelica Manaois">
+            <h3>Maria Angelica Manaois</h3>
+            <p>Documentation</p>
+          </article>
+
+          <article class="team-card team-lead">
+            <img src="m3.png" alt="Nicole De Guzman">
+            <h3>Nicole De Guzman</h3>
+            <p>Team Coordinator</p>
+          </article>
+        </div>
+
+        <p class="about-tagline">WADDLE — Learn at Your Own Pace.<br>Build Skills for the Workplace.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>WADDLE E-Learning Platform · Learn, grow, and succeed.</p>
+  </footer>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+  <script src="planner.js"></script>
+<script src="quiz.js"></script>
+
+  <script>
+  (function () {
+    var paths = ["images/logo-nav.png", "images/images/logo-nav.png", "logo-nav.png"];
+    var brand = document.querySelector(".brand");
+    if (!brand) return;
+    var i = 0;
+    function tryNext() {
+      if (i >= paths.length) { brand.classList.add("no-logo"); return; }
+      var img = new Image();
+      img.onload = function () { /* may logo, ayos */ };
+      img.onerror = function () { i++; tryNext(); };
+      img.src = paths[i];
+    }
+       tryNext();
+  })();
+</script>
+
+<script>
+    // ===== HOME BANNER SLIDER =====
+    (function () {
+      var index = 0;
+      var timer = null;
+
+      function track() { return document.getElementById("bannerTrack"); }
+      function dots()  { return document.getElementById("bannerDots"); }
+
+      function go(i) {
+        var t = track();
+        var d = dots();
+        if (!t || !d) return;
+
+        var total = t.children.length;
+        index = (i + total) % total;
+
+        t.style.display = "flex";
+        t.style.transition = "transform 0.6s ease";
+        t.style.transform = "translateX(-" + (index * 100) + "%)";
+
+        for (var k = 0; k < d.children.length; k++) {
+          d.children[k].classList.toggle("active", k === index);
+        }
+
+        clearInterval(timer);
+        timer = setInterval(function () { go(index + 1); }, 4000);
+      }
+
+      window.moveBanner = function (step) { go(index + step); };
+
+      var t = track();
+      var d = dots();
+      if (t && d) {
+        d.innerHTML = "";
+        for (var n = 0; n < t.children.length; n++) {
+          (function (num) {
+            var b = document.createElement("button");
+            b.setAttribute("aria-label", "Go to slide " + (num + 1));
+            b.onclick = function () { go(num); };
+            d.appendChild(b);
+          })(n);
+        }
+        go(0);
+      }
+    })();
+  </script>
+</body>
+</html>

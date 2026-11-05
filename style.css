@@ -1,0 +1,1048 @@
+/* =========================================
+   WADDLE | E-LEARNING WEBSITE
+========================================= */
+
+:root {
+  --green: #1b5e46;
+  --dark-green: #14473a;
+  --deep-green: #123d30;
+  --leaf: #2f9a6a;
+  --mint: #dff0e2;
+  --soft-mint: #f1f8ef;
+  --yellow: #ffdc7a;
+  --cream: #fffdf5;
+  --text: #24352b;
+  --ink: #24403a;
+  --muted: #5d716c;
+  --white: #ffffff;
+  --border: #d8e6dd;
+  --shadow: 0 12px 30px rgba(36, 92, 67, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #e8f1f4 0, #eaf4ec 560px, #f4f8f3 100%);
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+h1, h2, h3, .brand {
+  font-family: "Baloo 2", "Nunito", sans-serif;
+}
+
+main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* dahon sa gilid */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  bottom: 44px;
+  width: 110px;
+  height: 130px;
+  background: #4f9a54;
+  border-radius: 100% 0 100% 0;
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::before { left: -34px; transform: rotate(-15deg); }
+body::after { right: -34px; transform: scaleX(-1) rotate(-15deg); }
+
+@media (max-width: 900px) {
+  body::before, body::after { display: none; }
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+  min-height: 82px;
+  padding: 8px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: rgba(250, 251, 246, 0.94);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 18px rgba(36, 92, 67, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  color: var(--dark-green);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.brand img.logo { display: none; }
+
+.brand::before {
+  content: "";
+  display: block;
+  width: 207px;
+  height: 64px;
+  background:
+    url("images/logo-nav.png") left center / contain no-repeat,
+    url("images/images/logo-nav.png") left center / contain no-repeat,
+    url("logo-nav.png") left center / contain no-repeat;
+}
+
+.brand span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav button,
+.tabs button,
+.back-button {
+  background: transparent;
+  border: none;
+  padding: 10px 17px;
+  color: var(--dark-green);
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+nav button { padding: 10px 22px; }
+
+nav button:hover,
+.back-button:hover {
+  background: var(--mint);
+  transform: translateY(-2px);
+}
+
+#logoutBtn {
+  background: var(--dark-green);
+  color: #fff;
+}
+
+#logoutBtn:hover { background: #0f3a2f; }
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+main {
+  max-width: 1220px;
+  min-height: 78vh;
+  padding: 48px 26px 70px;
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: #2a6f8f;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   LOGIN AND SIGNUP
+========================================= */
+
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1.9fr 0.9fr;
+  align-items: center;
+  gap: 30px;
+  min-height: 0;
+  padding-top: 10px;
+}
+
+.welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  column-gap: 28px;
+  align-content: center;
+}
+
+.welcome > * { grid-column: 2; }
+
+.welcome h1 {
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 1.12;
+  color: #2a3d36;
+  font-weight: 800;
+  margin: 8px 0 14px;
+}
+
+.welcome h1 span { color: var(--green); }
+
+.welcome p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.duck-art {
+  font-size: 0;
+  background:
+    url("images/mascot.png") center / contain no-repeat,
+    url("images/images/mascot.png") center / contain no-repeat,
+    url("mascot.png") center / contain no-repeat;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 380 / 338;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.welcome > .duck-art {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: center;
+  transform-origin: bottom center;
+  animation: waddle 3s ease-in-out infinite;
+}
+
+/* animated login mascot */
+@keyframes waddle {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-12px) rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome > .duck-art { animation: none; }
+}
+
+.panel {
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(20, 71, 58, 0.12);
+}
+
+.tabs {
+  display: flex;
+  background: #eef2ee;
+  border-radius: 30px;
+  padding: 6px;
+  margin-bottom: 27px;
+}
+
+.tabs button { flex: 1; }
+
+.tabs button.active {
+  background: var(--dark-green);
+  color: white;
+}
+
+.panel h2 {
+  color: var(--dark-green);
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.panel form > p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d9e3d8;
+  border-radius: 10px;
+  outline: none;
+  background: #fcfefa;
+  transition: 0.2s ease;
+}
+
+input:focus {
+  border-color: #70a779;
+  box-shadow: 0 0 0 4px rgba(112, 167, 121, 0.13);
+}
+.primary {
+}
+
+.primary {
+  background: var(--leaf);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 22px;
+  margin-top: 16px;
+  font-weight: 800;
+}
+
+.primary:hover { background: #278658; }
+
+.full { width: 100%; }
+
+.demo-note {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 16px;
+  color: #1c5fa8;
+  text-decoration: underline;
+}
+
+.message {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  background: linear-gradient(120deg, #e3f1e6, #eef6f1);
+  border: 1px solid #e0ecd9;
+  border-radius: 18px;
+  padding: 34px 40px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  color: #2a3d36;
+  margin: 8px 0;
+}
+
+.hero h1 span { color: var(--green); }
+
+.hero p {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.hero-duck {
+  font-size: 0;
+  width: 130px;
+  height: 120px;
+  background:
+    url("images/logo-duck.png") center / contain no-repeat,
+    url("images/images/logo-duck.png") center / contain no-repeat,
+    url("logo-duck.png") center / contain no-repeat;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--green);
+}
+
+.stat-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* =========================================
+   HOME BANNER SLIDER
+========================================= */
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(20, 71, 58, 0.12);
+}
+
+.banner-track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 380px;
+  padding: 0 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-green { background: linear-gradient(120deg, #e3f1e6, #cfe8d4); }
+.slide-mint { background: linear-gradient(120deg, #f4f8f3, #dff0e2); }
+
+.banner-text { max-width: 520px; }
+
+.banner-text h2 {
+  font-size: clamp(30px, 4.5vw, 54px);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--dark-green);
+  margin: 0 0 12px;
+}
+
+.banner-text h2 span { color: var(--leaf); }
+
+.banner-text p {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.banner-text.light h2,
+.banner-text.light p { color: #fff; }
+
+.banner-art {
+  height: 85%;
+  max-width: 40%;
+  object-fit: contain;
+}
+
+.banner-emoji {
+  font-size: 150px;
+  line-height: 1;
+  filter: drop-shadow(0 8px 6px rgba(20, 71, 58, 0.15));
+}
+
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: var(--dark-green);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  padding: 0 0 4px;
+  box-shadow: 0 4px 12px rgba(20, 71, 58, 0.25);
+}
+
+.banner-arrow:hover { background: var(--leaf); }
+.banner-arrow.prev { left: 14px; }
+.banner-arrow.next { right: 14px; }
+
+.banner-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 14px 0 6px;
+}
+
+.banner-dots button {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--dark-green);
+  background: transparent;
+}
+
+.banner-dots button.active { background: var(--dark-green); }
+
+/* =========================================
+   COURSES
+========================================= */
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.course-card::before {
+  content: "";
+  height: 5px;
+  width: 100%;
+  background: var(--leaf);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.course-card:hover {
+  box-shadow: 0 8px 22px rgba(20, 71, 58, 0.10);
+  border-color: #b9d8c0;
+}
+
+.course-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background: var(--mint);
+  border-radius: 14px;
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.course-card h3 {
+  color: var(--dark-green);
+  font-size: 1.2rem;
+  line-height: 1.25;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.course-card p {
+  flex: 1;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.course-card small {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background: #e3ece5;
+  margin: 8px 0 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--leaf);
+  border-radius: 20px;
+}
+
+.course-card .primary {
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* =========================================
+   LESSON PANEL AND QUIZ
+========================================= */
+
+.lesson-panel {
+  margin-top: 35px;
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.lesson-panel h2 {
+  color: var(--dark-green);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 8px 0 6px;
+}
+
+.lesson-panel > p { color: var(--muted); }
+
+.back-button {
+  display: block;
+  width: fit-content;
+  background: var(--mint);
+  margin-bottom: 14px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+}
+
+.lesson-content {
+  background: #f3f9f4;
+  border-left: 4px solid var(--leaf);
+  border-radius: 0 12px 12px 0;
+  line-height: 1.75;
+  padding: 22px 26px;
+  margin: 20px 0;
+  white-space: pre-line;
+}
+
+#modulePdf {
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px dashed #b9d8c0;
+  border-radius: 12px;
+  background: #fbfdfb;
+}
+
+#modulePdf h3 { font-size: 1.1rem; margin-bottom: 2px; }
+#modulePdf p { color: var(--muted); margin-bottom: 10px; }
+
+#modulePdf a {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--dark-green);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+#modulePdf a:hover { background: #cfe8d4; }
+
+#completeBtn {
+  width: auto;
+  padding: 12px 26px;
+}
+
+.lesson-panel hr {
+  border: 0;
+  border-top: 1px dashed #c4dcc9;
+  margin: 28px 0;
+}
+
+.lesson-panel h3 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 15px;
+  max-width: 640px;
+}
+
+.quiz-option {
+  text-align: left;
+  padding: 13px 16px;
+  background: #fff;
+  border: 1px solid #d9e3d8;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.quiz-option:hover {
+  background: #f3f9f4;
+  border-color: var(--leaf);
+}
+
+.quiz-option.selected {
+  background: var(--mint);
+  border: 2px solid var(--leaf);
+}
+
+.lesson-panel .primary:last-of-type { margin-top: 18px; }
+
+/* =========================================
+   ABOUT US
+========================================= */
+
+.about-section {
+  padding: 10px 0 40px;
+  background: transparent;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.88fr) minmax(0, 1.65fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.about-copy {
+  text-align: left;
+  padding: 12px 8px 0;
+}
+
+.about-copy h1 {
+  color: var(--dark-green);
+  font-size: clamp(34px, 3.5vw, 43px);
+  line-height: 1.12;
+  margin: 13px 0 18px;
+  font-weight: 800;
+}
+
+.about-copy p {
+  color: #61766b;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.about-copy .about-intro {
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.about-copy .started-title {
+  color: var(--green);
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.about-copy .about-description { margin-top: 20px; }
+
+.about-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.about-info-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 17px;
+  text-align: left;
+}
+
+.about-info-card:hover { box-shadow: 0 6px 18px rgba(20, 71, 58, 0.08); }
+
+.info-icon { margin-bottom: 4px; }
+
+.about-info-card h3 {
+  color: var(--green);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.about-info-card p,
+.about-info-card li {
+  color: #61766b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.about-info-card ul {
+  padding-left: 16px;
+  margin-top: 5px;
+}
+
+.about-info-card li { margin-bottom: 5px; }
+
+/* =========================================
+   MEET OUR MEMBERS
+========================================= */
+
+.team-section {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 35px;
+}
+
+.team-section > h2 {
+  color: var(--dark-green);
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.team-intro {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 34px;
+}
+
+.team-card {
+  width: 150px;
+  min-width: 0;
+  text-align: center;
+}
+
+.team-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 13px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background: #e5f1e6;
+}
+
+.team-card h3 {
+  color: var(--green);
+  font-size: 13px;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.team-card p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.team-card.team-lead { width: 190px; order: 3; }
+.team-card.team-lead img { width: 128px; height: 128px; border: 4px solid #fff; }
+.team-card.team-lead h3 { color: var(--green); font-size: 1.1rem; }
+
+.team-card:nth-child(1) { order: 1; }
+.team-card:nth-child(2) { order: 2; }
+.team-card:nth-child(3) { order: 4; }
+.team-card:nth-child(4) { order: 5; }
+
+.about-tagline {
+  display: inline-block;
+  margin: 35px auto 0;
+  color: var(--green);
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* =========================================
+   SCHOOL PHOTO (kung gagamitin)
+========================================= */
+
+.school-photo {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-top: 20px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(20, 71, 58, 0.12);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  padding: 25px 20px;
+  text-align: center;
+  color: white;
+  background: var(--dark-green);
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+  .auth-layout { grid-template-columns: 1fr; }
+
+  .welcome { grid-template-columns: 1fr; text-align: center; }
+  .welcome > * { grid-column: 1; grid-row: auto; margin-inline: auto; }
+  .welcome > .duck-art { grid-row: auto; order: -1; margin: 0 auto 10px; }
+
+  .about-layout { grid-template-columns: 1fr; }
+  .about-info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .navbar { padding: 8px 5%; flex-wrap: wrap; }
+  main { padding: 28px 16px 45px; }
+
+  .course-grid { grid-template-columns: 1fr; }
+
+  .hero { padding: 22px; }
+  .hero h1 { font-size: 1.7rem; }
+  .hero-duck { width: 76px; height: 76px; }
+
+  .lesson-panel { padding: 20px; }
+  .lesson-content { padding: 16px 18px; }
+
+  .banner-slide { height: 300px; padding: 0 50px; }
+  .banner-text p { font-size: 0.95rem; }
+  .banner-emoji { font-size: 80px; }
+  .banner-art { display: none; }
+  .banner-arrow { width: 38px; height: 38px; font-size: 24px; }
+}
+
+@media (max-width: 560px) {
+  .brand::before { width: 162px; height: 50px; }
+
+  nav { flex-wrap: wrap; gap: 4px; }
+  nav button { padding: 8px 10px; font-size: 13px; }
+
+  .about-info-grid { grid-template-columns: 1fr; }
+
+  .team-card img { width: 76px; height: 76px; }
+  .team-card.team-lead img { width: 100px; height: 100px; }
+  .team-section > h2 { font-size: 25px; }
+  .about-tagline { font-size: 1rem; }
+}
+
+/* ===== ANIMATED BANNER ART ===== */
+.banner-svg {
+  height: 85%;
+  width: auto;
+  max-width: 45%;
+}
+
+.banner-art { animation: floaty 3.5s ease-in-out infinite; }
+.bob { animation: floaty 3s ease-in-out infinite; }
+.float2 { animation: floaty 4s ease-in-out infinite reverse; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.clock-hand {
+  transform-origin: 335px 70px;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.type {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: typing 3s ease-in-out infinite;
+}
+
+@keyframes typing {
+  0% { transform: scaleX(0); }
+  60%, 100% { transform: scaleX(1); }
+}
+
+.grow {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: grow 3.5s ease-in-out infinite;
+}
+
+@keyframes grow {
+  0% { transform: scaleY(0); }
+  40%, 100% { transform: scaleY(1); }
+}
+
+@media (max-width: 760px) {
+  .banner-svg { display: none; }
+}
+/* MEET OUR MEMBERS: pare-parehong laki, bahagyang mas malaki si Team Coordinator */
+.team-container { align-items: flex-start; }
+.team-card img { width: 120px; height: 120px; }
+.team-card.team-lead img { width: 136px; height: 136px; }
+/* MEET OUR MEMBERS: pare-parehong laki, bahagyang mas malaki si Team Coordinator */
+.team-container { align-items: flex-start; }
+.team-card img { width: 120px; height: 120px; }
+.team-card.team-lead img { width: 136px; height: 136px; }
+
+/* Fallback kapag hindi ma-load ang logo */
+.brand.no-logo::before { display: none; }
+...
+}
+/* Fallback kapag hindi ma-load ang logo */
+.brand.no-logo::before { display: none; }
+.brand.no-logo span {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  color: var(--dark-green);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+.brand.no-logo span small {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+}
